@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohit Kumar — Senior Unity Developer, XR/VR/AR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141A;
+    --panel:#1B1E27;
+    --panel-raised:#242833;
+    --ember:#FF5A1F;
+    --signal:#2FE6A6;
+    --paper:#F3F1E9;
+    --steel:#8B8F9E;
+    --line: rgba(243,241,233,0.10);
+    --cut: 26px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    letter-spacing:0.01em;
+    margin:0;
+    line-height:0.95;
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--signal);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,20,26,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .nav-name{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:0.02em;
+  }
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    text-decoration:none;
+    font-size:14px;
+    color:var(--steel);
+    font-weight:500;
+    transition:color 0.15s ease;
+  }
+  .nav-links a:hover{color:var(--paper);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:720px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 120px;
+    overflow:hidden;
+  }
+  .hero-shape{
+    position:absolute;
+    top:-120px; right:-160px;
+    width:520px; height:520px;
+    background:linear-gradient(135deg, var(--ember) 0%, transparent 70%);
+    opacity:0.16;
+    transform:rotate(18deg);
+    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    pointer-events:none;
+  }
+  .eyebrow-role{
+    color:var(--signal);
+    font-weight:600;
+    font-size:15px;
+    margin-bottom:18px;
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(48px, 8vw, 96px);
+    color:var(--paper);
+  }
+  .hero h1 span{color:var(--ember);}
+  .hero-sub{
+    max-width:560px;
+    margin-top:22px;
+    font-size:18px;
+    color:var(--steel);
+  }
+  .hero-stats{
+    display:flex; flex-wrap:wrap; gap:36px;
+    margin-top:48px;
+  }
+  .stat .num{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:38px;
+    color:var(--paper);
+  }
+  .stat .label{
+    font-size:13px;
+    color:var(--steel);
+    margin-top:2px;
+  }
+  .hero-links{
+    margin-top:44px;
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:var(--paper);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    transition:background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+  .btn:hover{background:var(--panel-raised); border-color:var(--ember); transform:translateY(-2px);}
+  .btn.primary{
+    background:var(--ember);
+    border-color:var(--ember);
+    color:#191008;
+  }
+  .btn.primary:hover{background:#ff6e3a; transform:translateY(-2px);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    display:flex; align-items:baseline; gap:18px;
+    margin-bottom:48px;
+  }
+  .section-head h2{
+    font-size:clamp(32px, 4vw, 46px);
+  }
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+    transform:skewX(-30deg);
+  }
+  .divider{
+    height:34px;
+    background:linear-gradient(90deg, var(--ember), var(--signal));
+    opacity:0.9;
+    transform:skewY(-1.4deg);
+    margin:0 -1px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+  }
+  .about-text p{font-size:17px; color:#D9D7CE; max-width:56ch;}
+  .about-text p + p{margin-top:16px;}
+  .stack-list{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-top:6px;
+  }
+  .tag{
+    font-size:13px;
+    padding:6px 12px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--steel);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .about-side h3{
+    font-size:15px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    color:var(--signal);
+    text-transform:none;
+    margin-bottom:12px;
+  }
+
+  @media (max-width:800px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-row{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:32px;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .exp-row:last-child{border-bottom:1px solid var(--line);}
+  .exp-date{color:var(--steel); font-size:14px; padding-top:4px;}
+  .exp-role h3{
+    font-size:24px;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    color:var(--paper);
+  }
+  .exp-role .co{
+    color:var(--ember);
+    font-weight:600;
+    font-size:15px;
+    margin-top:4px;
+    display:block;
+  }
+  .exp-role ul{
+    margin:16px 0 0;
+    padding-left:18px;
+    color:#D9D7CE;
+    font-size:15.5px;
+  }
+  .exp-role li + li{margin-top:8px;}
+
+  @media (max-width:640px){
+    .exp-row{grid-template-columns:1fr;}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:28px;
+  }
+  @media (max-width:800px){.proj-grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
+    display:flex; flex-direction:column;
+    transition:border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover{border-color:var(--ember); transform:translateY(-3px);}
+
+  .card-visual{
+    height:170px;
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,90,31,0.07) 0 2px, transparent 2px 22px),
+      var(--panel-raised);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .card-visual .ph-label{
+    font-size:12.5px;
+    color:var(--steel);
+    border:1px dashed var(--line);
+    padding:8px 14px;
+    background:rgba(18,20,26,0.55);
+  }
+  .card-visual.live{
+    background:linear-gradient(135deg, rgba(255,90,31,0.22), rgba(47,230,166,0.10));
+  }
+  .card-visual .big-init{
+    position:absolute;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:900;
+    font-size:96px;
+    color:rgba(243,241,233,0.05);
+    letter-spacing:0.02em;
+  }
+
+  .card-body{padding:22px 24px 26px; display:flex; flex-direction:column; flex:1;}
+  .card-body h3{
+    font-size:22px;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+  }
+  .card-tagline{color:var(--steel); font-size:13.5px; margin-top:4px;}
+  .card-body ul{
+    margin:14px 0 0;
+    padding-left:16px;
+    font-size:14.5px;
+    color:#D9D7CE;
+    flex:1;
+  }
+  .card-body li + li{margin-top:7px;}
+  .card-tags{
+    display:flex; flex-wrap:wrap; gap:6px;
+    margin-top:16px;
+  }
+  .card-tags .tag{font-size:11.5px; padding:4px 9px;}
+  .card-link{
+    margin-top:16px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--signal);
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .card-link:hover{text-decoration:underline;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:720px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-block h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--ember);
+    margin-bottom:16px;
+  }
+  .skill-block.proficient h3{color:var(--signal);}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:9px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    padding:96px 0 60px;
+    text-align:left;
+  }
+  footer h2{
+    font-size:clamp(34px, 6vw, 60px);
+    max-width:14ch;
+  }
+  footer .sub{color:var(--steel); margin-top:18px; max-width:48ch; font-size:16px;}
+  .foot-links{
+    margin-top:40px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .foot-meta{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:13px; color:var(--steel);
+  }
+
+  /* fade-up on load, hero only, single orchestrated moment */
+  .fade-seq > *{
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+  }
+  .fade-seq > *:nth-child(1){animation-delay:0.05s;}
+  .fade-seq > *:nth-child(2){animation-delay:0.15s;}
+  .fade-seq > *:nth-child(3){animation-delay:0.25s;}
+  .fade-seq > *:nth-child(4){animation-delay:0.35s;}
+  .fade-seq > *:nth-child(5){animation-delay:0.45s;}
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">MK<span style="color:var(--ember)">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-shape"></div>
+  <div class="wrap fade-seq">
+    <span class="eyebrow-role">Senior Unity Developer · XR / VR / AR</span>
+    <h1>Mohit Kumar<br>builds worlds you<br>can <span>step into.</span></h1>
+    <p class="hero-sub">Technical Lead at Dotsquares, shipping Unity applications across mobile, WebGL, VR, AR and mixed reality — from client-facing enterprise tools to a solo-built arena game.</p>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="num">5+</div><div class="label">years in Unity / C#</div></div>
+      <div class="stat"><div class="num">5+</div><div class="label">shipped projects, prototype to release</div></div>
+      <div class="stat"><div class="num">4</div><div class="label">platforms: mobile, WebGL, VR, AR/MR</div></div>
+    </div>
+
+    <div class="hero-links">
+      <a class="btn primary" href="mailto:mkumarj7861@gmail.com">Get in touch</a>
+      <a class="btn" href="./Mohit_Kumar_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+      <a class="btn" href="https://mooglimk.itch.io/" target="_blank" rel="noopener">itch.io</a>
+      <a class="btn" href="https://github.com/mkumarj786" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/kumar-mohit-/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><h2>About</h2><div class="rule"></div></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I lead technical architecture and delivery on Unity3D projects that span mobile, WebGL, VR and AR — usually as the sole or lead engineer taking a build from prototype through live release. My day-to-day splits between hands-on development and client-facing work: running discovery calls, scoping technical proposals, and mapping requirements into phased delivery plans across several concurrent engagements.</p>
+        <p>Outside client work, I solo-develop Airbound, a 1v1 arena sports game, end to end — architecture, gameplay systems, networking, and UI. Game design and systems balancing are as much a part of how I build as the engineering side.</p>
+      </div>
+      <div class="about-side">
+        <h3>Core stack</h3>
+        <div class="stack-list">
+          <span class="tag">Unity 2D/3D</span>
+          <span class="tag">C#</span>
+          <span class="tag">AR Foundation</span>
+          <span class="tag">Magic Leap 2 SDK</span>
+          <span class="tag">Meta Quest / Oculus SDK</span>
+          <span class="tag">XR Interaction Toolkit</span>
+          <span class="tag">Photon</span>
+          <span class="tag">WebGL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head"><h2>Experience</h2><div class="rule"></div></div>
+
+    <div class="exp-row">
+      <div class="exp-date">Nov 2021 — Present<br>Jaipur, Rajasthan</div>
+      <div class="exp-role">
+        <h3>Senior Unity &amp; Mixed Reality Developer <span class="co">Dotsquares · Technical Lead</span></h3>
+        <ul>
+          <li>Architected and delivered 5+ Unity3D projects across mobile/iOS/Android, WebGL, VR and AR, taking each from prototype to live release as sole or lead technical owner.</li>
+          <li>Shipped Unity applications across gaming, enterprise, industrial AR and healthcare simulation, adapting architecture to each domain's device and deployment constraints.</li>
+          <li>Ran technical discovery calls and owned client-facing scoping across concurrent engagements, translating requirements into phased delivery plans, technical proposals and effort estimates.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Aug 2021 — Oct 2021<br>Andhra Pradesh, India</div>
+      <div class="exp-role">
+        <h3>Unity Developer Intern <span class="co">INVLABZ</span></h3>
+        <ul>
+          <li>Scripted physics-based interactions and animations in C# to simulate real-world physics experiments in Unity.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><h2>Projects</h2><div class="rule"></div></div>
+
+    <div class="proj-grid">
+
+      <div class="card">
+        <div class="card-visual live">
+          <div class="big-init">AB</div>
+          <span class="ph-label">Play the build on itch.io ↓</span>
+        </div>
+        <div class="card-body">
+          <h3>Airbound</h3>
+          <p class="card-tagline">2D arena sports game · personal project</p>
+          <ul>
+            <li>Solo-architected a complete 1v1 arena game — gameplay systems, physics, AI, input, UI and match flow.</li>
+            <li>Built modular abilities (Dash, Kick, Zip Wire, Shield, Shield Wall) with cooldowns and tactical arena control.</li>
+            <li>Added a loadout system and cross-platform mobile touch controls; mobile build currently in closed testing.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity URP</span><span class="tag">C#</span><span class="tag">Socket Networking</span>
+          </div>
+          <a class="card-link" href="https://mooglimk.itch.io/airbound" target="_blank" rel="noopener">Play on itch.io →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-visual">
+          <span class="ph-label">Project capture — add screenshot/gif</span>
+        </div>
+        <div class="card-body">
+          <h3>Virgin Atlantic Security Scanner</h3>
+          <p class="card-tagline">On-site MR trolley/baggage screening tool · Magic Leap 2</p>
+          <ul>
+            <li>Built the Unity-side pipeline streaming live MR camera feed to a remote object-detection service, flagging prohibited items in service trolleys in real time.</li>
+            <li>Implemented QR-based trolley identification to map scan results to physical compartment layout, with in-headset visualization of outcomes.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Magic Leap 2 SDK</span><span class="tag">Object Detection API</span><span class="tag">QR / Marker Tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-visual">
+          <span class="ph-label">Project capture — add screenshot/gif</span>
+        </div>
+        <div class="card-body">
+          <h3>Medical MRI Training Simulator</h3>
+          <p class="card-tagline">Immersive VR healthcare training · Oculus</p>
+          <ul>
+            <li>Simulated an end-to-end MRI scan workflow with interactive patient communication and tool handling for clinical staff training.</li>
+            <li>Optimized interaction logic and rendering to hold smooth VR performance across training scenarios.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Oculus SDK</span><span class="tag">VR Interaction Toolkit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-visual">
+          <span class="ph-label">Project capture — add screenshot/gif</span>
+        </div>
+        <div class="card-body">
+          <h3>SuperGas AR Plant Layout Planner</h3>
+          <p class="card-tagline">On-site AR tool for industrial layout planning</p>
+          <ul>
+            <li>Built AR surface scanning with true-scale boundary marking to flag any of 20+ placeable 3D models exceeding the marked footprint.</li>
+            <li>Added rotation, screenshot capture and form-based reporting for automated field-survey layout reports.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">AR Foundation</span><span class="tag">Addressables</span><span class="tag">UI Toolkit</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head"><h2>Skills</h2><div class="rule"></div></div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h3>Expert</h3>
+        <div class="skill-tags">
+          <span class="tag">Unity (2D/3D)</span>
+          <span class="tag">C#</span>
+          <span class="tag">VR/AR/MR Development</span>
+          <span class="tag">XR Interaction Toolkit</span>
+          <span class="tag">Game Design &amp; Systems Balancing</span>
+          <span class="tag">Mobile Game Development</span>
+          <span class="tag">WebGL</span>
+          <span class="tag">Git / Plastic SCM</span>
+        </div>
+      </div>
+      <div class="skill-block proficient">
+        <h3>Proficient</h3>
+        <div class="skill-tags">
+          <span class="tag">AR Foundation</span>
+          <span class="tag">Multiplayer Networking (Socket, Photon)</span>
+          <span class="tag">Magic Leap 2 / Meta Quest SDKs</span>
+          <span class="tag">Game Optimization</span>
+          <span class="tag">Technical Scoping &amp; Client Delivery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's build the next thing.</h2>
+    <p class="sub">Open to senior Unity / XR roles and select freelance work. Reach out directly or find me on the links below.</p>
+    <div class="foot-links">
+      <a class="btn primary" href="mailto:mkumarj7861@gmail.com">mkumarj7861@gmail.com</a>
+      <a class="btn" href="tel:+916350177437">+91 63501 77437</a>
+      <a class="btn" href="https://github.com/mkumarj786" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/kumar-mohit-/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://mooglimk.itch.io/" target="_blank" rel="noopener">itch.io</a>
+    </div>
+    <div class="foot-meta">
+      <span>Jaipur, Rajasthan, India</span>
+      <span>© Mohit Kumar</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
