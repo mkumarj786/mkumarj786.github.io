@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohit Kumar — Senior Unity Developer, XR/VR/AR</title>
+<title>Mohit Kumar — Senior Unity Developer · XR / VR / AR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#12141A;
-    --panel:#1B1E27;
-    --panel-raised:#242833;
-    --ember:#FF5A1F;
-    --signal:#2FE6A6;
-    --paper:#F3F1E9;
-    --steel:#8B8F9E;
-    --line: rgba(243,241,233,0.10);
-    --cut: 26px;
+    --bg:#090A0C;
+    --panel:#121417;
+    --panel-raised:#181B20;
+    --panel-hover:#1F232A;
+    --text-main:#FFFFFF;
+    --text-sub:#9CA3AF;
+    --text-muted:#646A77;
+    --line:rgba(255,255,255,0.08);
+    --line-strong:rgba(255,255,255,0.18);
+    --line-glow:rgba(255,255,255,0.32);
+    --cut:24px;
   }
 
   *{box-sizing:border-box;}
@@ -29,8 +31,8 @@
 
   body{
     margin:0;
-    background:var(--ink);
-    color:var(--paper);
+    background:var(--bg);
+    color:var(--text-main);
     font-family:'Space Grotesk', sans-serif;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
@@ -42,11 +44,12 @@
     letter-spacing:0.01em;
     margin:0;
     line-height:0.95;
+    color:var(--text-main);
   }
 
   a{color:inherit;}
   a:focus-visible, button:focus-visible{
-    outline:3px solid var(--signal);
+    outline:2px solid #FFFFFF;
     outline-offset:3px;
   }
 
@@ -59,8 +62,9 @@
   /* ---------- NAV ---------- */
   nav{
     position:sticky; top:0; z-index:50;
-    background:rgba(18,20,26,0.86);
-    backdrop-filter:blur(8px);
+    background:rgba(9,10,12,0.88);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
   }
   nav .wrap{
@@ -71,18 +75,19 @@
     font-family:'Big Shoulders Display', sans-serif;
     font-weight:800;
     font-size:22px;
-    letter-spacing:0.02em;
+    letter-spacing:0.04em;
+    color:var(--text-main);
   }
+  .nav-name span{color:var(--text-muted);}
   .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
   .nav-links a{
     text-decoration:none;
     font-size:14px;
-    color:var(--steel);
+    color:var(--text-sub);
     font-weight:500;
     transition:color 0.15s ease;
   }
-  .nav-links a:hover{color:var(--paper);}
-  .nav-toggle{display:none;}
+  .nav-links a:hover{color:var(--text-main);}
 
   @media (max-width:720px){
     .nav-links{display:none;}
@@ -91,36 +96,45 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    padding:96px 0 120px;
+    padding:96px 0 110px;
     overflow:hidden;
   }
   .hero-shape{
     position:absolute;
-    top:-120px; right:-160px;
-    width:520px; height:520px;
-    background:linear-gradient(135deg, var(--ember) 0%, transparent 70%);
-    opacity:0.16;
-    transform:rotate(18deg);
-    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+    top:-120px; right:-140px;
+    width:560px; height:560px;
+    background:radial-gradient(circle at 60% 40%, rgba(255,255,255,0.06) 0%, transparent 65%);
     pointer-events:none;
   }
   .eyebrow-role{
-    color:var(--signal);
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 14px;
+    font-size:12px;
     font-weight:600;
-    font-size:15px;
-    margin-bottom:18px;
-    display:inline-block;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-main);
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    margin-bottom:22px;
   }
   .hero h1{
-    font-size:clamp(48px, 8vw, 96px);
-    color:var(--paper);
+    font-size:clamp(48px, 8vw, 94px);
+    color:var(--text-main);
+    letter-spacing:0.01em;
   }
-  .hero h1 span{color:var(--ember);}
+  .hero h1 span{
+    background:linear-gradient(180deg, #FFFFFF 20%, #7E8492 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
   .hero-sub{
-    max-width:560px;
+    max-width:580px;
     margin-top:22px;
     font-size:18px;
-    color:var(--steel);
+    color:var(--text-sub);
+    line-height:1.6;
   }
   .hero-stats{
     display:flex; flex-wrap:wrap; gap:36px;
@@ -130,11 +144,11 @@
     font-family:'Big Shoulders Display', sans-serif;
     font-weight:800;
     font-size:38px;
-    color:var(--paper);
+    color:var(--text-main);
   }
   .stat .label{
     font-size:13px;
-    color:var(--steel);
+    color:var(--text-sub);
     margin-top:2px;
   }
   .hero-links{
@@ -150,17 +164,23 @@
     text-decoration:none;
     border:1px solid var(--line);
     background:var(--panel);
-    color:var(--paper);
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
-    transition:background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    color:var(--text-main);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    transition:background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, color 0.15s ease;
   }
-  .btn:hover{background:var(--panel-raised); border-color:var(--ember); transform:translateY(-2px);}
+  .btn:hover{background:var(--panel-raised); border-color:var(--line-strong); transform:translateY(-2px);}
   .btn.primary{
-    background:var(--ember);
-    border-color:var(--ember);
-    color:#191008;
+    background:#FFFFFF;
+    border-color:#FFFFFF;
+    color:#090A0C;
+    font-weight:700;
   }
-  .btn.primary:hover{background:#ff6e3a; transform:translateY(-2px);}
+  .btn.primary:hover{
+    background:#E2E8F0;
+    border-color:#E2E8F0;
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(255,255,255,0.18);
+  }
 
   /* ---------- SECTION SHELL ---------- */
   section{padding:88px 0;}
@@ -175,14 +195,11 @@
     flex:1;
     height:1px;
     background:var(--line);
-    transform:skewX(-30deg);
   }
   .divider{
-    height:34px;
-    background:linear-gradient(90deg, var(--ember), var(--signal));
-    opacity:0.9;
-    transform:skewY(-1.4deg);
-    margin:0 -1px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--line-strong), transparent);
+    margin:0;
   }
 
   /* ---------- ABOUT ---------- */
@@ -191,25 +208,25 @@
     grid-template-columns:1.3fr 1fr;
     gap:56px;
   }
-  .about-text p{font-size:17px; color:#D9D7CE; max-width:56ch;}
+  .about-text p{font-size:16.5px; color:#D1D5DB; max-width:56ch;}
   .about-text p + p{margin-top:16px;}
   .stack-list{
     display:flex; flex-wrap:wrap; gap:8px;
     margin-top:6px;
   }
   .tag{
-    font-size:13px;
+    font-size:12.5px;
     padding:6px 12px;
     background:var(--panel);
     border:1px solid var(--line);
-    color:var(--steel);
+    color:var(--text-sub);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   }
   .about-side h3{
     font-size:15px;
     font-family:'Space Grotesk', sans-serif;
     font-weight:600;
-    color:var(--signal);
+    color:var(--text-main);
     text-transform:none;
     margin-bottom:12px;
   }
@@ -227,25 +244,25 @@
     border-top:1px solid var(--line);
   }
   .exp-row:last-child{border-bottom:1px solid var(--line);}
-  .exp-date{color:var(--steel); font-size:14px; padding-top:4px;}
+  .exp-date{color:var(--text-muted); font-size:14px; padding-top:4px;}
   .exp-role h3{
     font-size:24px;
     font-family:'Big Shoulders Display', sans-serif;
     font-weight:700;
-    color:var(--paper);
+    color:var(--text-main);
   }
   .exp-role .co{
-    color:var(--ember);
+    color:#D1D5DB;
     font-weight:600;
-    font-size:15px;
+    font-size:14.5px;
     margin-top:4px;
     display:block;
   }
   .exp-role ul{
     margin:16px 0 0;
     padding-left:18px;
-    color:#D9D7CE;
-    font-size:15.5px;
+    color:#D1D5DB;
+    font-size:15px;
   }
   .exp-role li + li{margin-top:8px;}
 
@@ -266,36 +283,37 @@
     border:1px solid var(--line);
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
     display:flex; flex-direction:column;
-    transition:border-color 0.2s ease, transform 0.2s ease;
+    transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .card:hover{border-color:var(--ember); transform:translateY(-3px);}
+  .card:hover{
+    border-color:var(--line-glow);
+    transform:translateY(-3px);
+    box-shadow:0 18px 36px rgba(0,0,0,0.65);
+  }
 
   .card-visual{
     height:250px;
     position:relative;
     display:flex; align-items:center; justify-content:center;
     background:
-      repeating-linear-gradient(135deg, rgba(255,90,31,0.07) 0 2px, transparent 2px 22px),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 22px),
       var(--panel-raised);
     border-bottom:1px solid var(--line);
     overflow:hidden;
   }
   .card-visual .ph-label{
-    font-size:12.5px;
-    color:var(--steel);
-    border:1px dashed var(--line);
+    font-size:12px;
+    color:var(--text-sub);
+    border:1px dashed var(--line-strong);
     padding:8px 14px;
-    background:rgba(18,20,26,0.55);
-  }
-  .card-visual.live{
-    background:linear-gradient(135deg, rgba(255,90,31,0.22), rgba(47,230,166,0.10));
+    background:rgba(9,10,12,0.65);
   }
   .card-visual .big-init{
     position:absolute;
     font-family:'Big Shoulders Display', sans-serif;
     font-weight:900;
     font-size:96px;
-    color:rgba(243,241,233,0.05);
+    color:rgba(255,255,255,0.04);
     letter-spacing:0.02em;
   }
 
@@ -304,13 +322,14 @@
     font-size:22px;
     font-family:'Big Shoulders Display', sans-serif;
     font-weight:700;
+    color:var(--text-main);
   }
-  .card-tagline{color:var(--steel); font-size:13.5px; margin-top:4px;}
+  .card-tagline{color:var(--text-sub); font-size:13.5px; margin-top:4px;}
   .card-body ul{
     margin:14px 0 0;
     padding-left:16px;
     font-size:14.5px;
-    color:#D9D7CE;
+    color:#D1D5DB;
     flex:1;
   }
   .card-body li + li{margin-top:7px;}
@@ -319,68 +338,34 @@
     margin-top:16px;
   }
   .card-tags .tag{font-size:11.5px; padding:4px 9px;}
+  .card-badge{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-main);
+    border:1px solid var(--line-strong);
+    background:rgba(255,255,255,0.05);
+    padding:3px 8px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
   .card-link{
-    margin-top:16px;
     font-size:13.5px;
     font-weight:600;
-    color:var(--signal);
+    color:var(--text-main);
     text-decoration:none;
     display:inline-flex; align-items:center; gap:6px;
+    border:1px solid var(--line);
+    background:var(--panel-raised);
+    padding:6px 12px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+    transition:background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
   }
-  .card-link:hover{text-decoration:underline;}
-
-  /* ---------- SKILLS ---------- */
-  .skills-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-  }
-  @media (max-width:720px){.skills-grid{grid-template-columns:1fr;}}
-  .skill-block h3{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    font-size:15px;
-    color:var(--ember);
-    margin-bottom:16px;
-  }
-  .skill-block.proficient h3{color:var(--signal);}
-  .skill-tags{display:flex; flex-wrap:wrap; gap:9px;}
-
-  /* ---------- CONTACT / FOOTER ---------- */
-  footer{
-    padding:96px 0 60px;
-    text-align:left;
-  }
-  footer h2{
-    font-size:clamp(34px, 6vw, 60px);
-    max-width:14ch;
-  }
-  footer .sub{color:var(--steel); margin-top:18px; max-width:48ch; font-size:16px;}
-  .foot-links{
-    margin-top:40px;
-    display:flex; gap:16px; flex-wrap:wrap;
-  }
-  .foot-meta{
-    margin-top:64px;
-    padding-top:24px;
-    border-top:1px solid var(--line);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
-    font-size:13px; color:var(--steel);
-  }
-
-  /* fade-up on load, hero only, single orchestrated moment */
-  .fade-seq > *{
-    opacity:0;
-    animation:fadeUp 0.7s ease forwards;
-  }
-  .fade-seq > *:nth-child(1){animation-delay:0.05s;}
-  .fade-seq > *:nth-child(2){animation-delay:0.15s;}
-  .fade-seq > *:nth-child(3){animation-delay:0.25s;}
-  .fade-seq > *:nth-child(4){animation-delay:0.35s;}
-  .fade-seq > *:nth-child(5){animation-delay:0.45s;}
-  @keyframes fadeUp{
-    from{opacity:0; transform:translateY(14px);}
-    to{opacity:1; transform:translateY(0);}
+  .card-link:hover{
+    background:var(--panel-hover);
+    border-color:var(--line-strong);
+    color:#FFFFFF;
   }
 
   /* ---------- THUMBNAIL EXPAND INTERACTION ---------- */
@@ -405,11 +390,11 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--paper);
-    background: rgba(18, 20, 26, 0.85);
+    color: var(--text-main);
+    background: rgba(9,10,12,0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
     opacity: 0;
     transform: translateY(-4px);
@@ -421,8 +406,63 @@
   .card-visual.clickable:hover .expand-hint {
     opacity: 1;
     transform: translateY(0);
-    border-color: var(--ember);
-    background: rgba(27, 30, 39, 0.95);
+    border-color: #FFFFFF;
+    background: rgba(24,27,32,0.95);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:720px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-block h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--text-main);
+    margin-bottom:16px;
+  }
+  .skill-block.proficient h3{color:#CBD5E1;}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:9px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    padding:96px 0 60px;
+    text-align:left;
+  }
+  footer h2{
+    font-size:clamp(34px, 6vw, 60px);
+    max-width:14ch;
+    color:var(--text-main);
+  }
+  footer .sub{color:var(--text-sub); margin-top:18px; max-width:48ch; font-size:16px;}
+  .foot-links{
+    margin-top:40px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .foot-meta{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:13px; color:var(--text-muted);
+  }
+
+  /* fade-up on load, hero only */
+  .fade-seq > *{
+    opacity:0;
+    animation:fadeUp 0.7s ease forwards;
+  }
+  .fade-seq > *:nth-child(1){animation-delay:0.05s;}
+  .fade-seq > *:nth-child(2){animation-delay:0.15s;}
+  .fade-seq > *:nth-child(3){animation-delay:0.25s;}
+  .fade-seq > *:nth-child(4){animation-delay:0.35s;}
+  .fade-seq > *:nth-child(5){animation-delay:0.45s;}
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
   }
 
   /* ---------- MEDIA LIGHTBOX MODAL ---------- */
@@ -445,9 +485,9 @@
   .media-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(10, 12, 16, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(8, 9, 11, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
   .media-modal-container {
     position: relative;
@@ -457,9 +497,9 @@
   }
   .media-modal-dialog {
     background: var(--panel);
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 90, 31, 0.15);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.9);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -487,19 +527,19 @@
     font-size: 22px;
     font-weight: 700;
     letter-spacing: 0.02em;
-    color: var(--paper);
+    color: var(--text-main);
     margin: 0;
   }
   .media-modal-subtitle {
     font-size: 12px;
-    color: var(--steel);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
   .media-modal-close {
     background: transparent;
     border: 1px solid var(--line);
-    color: var(--steel);
+    color: var(--text-sub);
     width: 32px;
     height: 32px;
     display: flex;
@@ -510,9 +550,9 @@
     transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
   }
   .media-modal-close:hover {
-    color: var(--paper);
-    border-color: var(--ember);
-    background: rgba(255, 90, 31, 0.12);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.1);
   }
   .media-modal-content {
     position: relative;
@@ -545,7 +585,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="nav-name">MK<span style="color:var(--ember)">.</span></div>
+    <div class="nav-name">MK<span>.</span></div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -561,7 +601,7 @@
   <div class="wrap fade-seq">
     <span class="eyebrow-role">Senior Unity Developer · XR / VR / AR</span>
     <h1>Mohit Kumar<br>builds worlds you<br>can <span>step into.</span></h1>
-    <p class="hero-sub">Technical Lead at Dotsquares, shipping Unity applications across mobile, WebGL, VR, AR and mixed reality — from client-facing enterprise tools to a solo-built arena game.</p>
+    <p class="hero-sub">Technical Lead at Dotsquares, architecting Unity applications across mobile, WebGL, VR, AR, and mixed reality — from client-facing enterprise tools to full-stack game systems and custom physics engines.</p>
 
     <div class="hero-stats">
       <div class="stat"><div class="num">5+</div><div class="label">years in Unity / C#</div></div>
@@ -586,20 +626,22 @@
     <div class="section-head"><h2>About</h2><div class="rule"></div></div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I lead technical architecture and delivery on Unity3D projects that span mobile, WebGL, VR and AR — usually as the sole or lead engineer taking a build from prototype through live release. My day-to-day splits between hands-on development and client-facing work: running discovery calls, scoping technical proposals, and mapping requirements into phased delivery plans across several concurrent engagements.</p>
-        <p>Outside client work, I solo-develop Airbound, a 1v1 arena sports game, end to end — architecture, gameplay systems, networking, and UI. Game design and systems balancing are as much a part of how I build as the engineering side.</p>
+        <p>I lead technical architecture and delivery on Unity3D projects that span mobile, WebGL, VR, and AR — usually as the sole or lead engineer taking a build from prototype through live release. My day-to-day splits between hands-on development and client-facing work: running discovery calls, scoping technical proposals, and mapping requirements into phased delivery plans across several concurrent engagements.</p>
+        <p>Outside client work, I solo-develop Airbound, a 1v1 arena sports game, end to end — architecture, gameplay systems, socket networking, and UI. Deep systems balancing, shader authoring, and physics R&amp;D are central to how I build.</p>
       </div>
       <div class="about-side">
         <h3>Core stack</h3>
         <div class="stack-list">
           <span class="tag">Unity 2D/3D</span>
-          <span class="tag">C#</span>
-          <span class="tag">AR Foundation</span>
-          <span class="tag">Magic Leap 2 SDK</span>
-          <span class="tag">Meta Quest / Oculus SDK</span>
+          <span class="tag">C# Architecture</span>
           <span class="tag">XR Interaction Toolkit</span>
-          <span class="tag">Photon</span>
-          <span class="tag">WebGL</span>
+          <span class="tag">Meta Quest / Oculus SDK</span>
+          <span class="tag">Magic Leap 2 SDK</span>
+          <span class="tag">AR Foundation</span>
+          <span class="tag">Ultraleap Hand Tracking</span>
+          <span class="tag">HLSL / Shader Graph</span>
+          <span class="tag">Socket / Photon Networking</span>
+          <span class="tag">WebGL Optimization</span>
         </div>
       </div>
     </div>
@@ -615,9 +657,9 @@
       <div class="exp-role">
         <h3>Senior Unity &amp; Mixed Reality Developer <span class="co">Dotsquares · Technical Lead</span></h3>
         <ul>
-          <li>Architected and delivered 5+ Unity3D projects across mobile/iOS/Android, WebGL, VR and AR, taking each from prototype to live release as sole or lead technical owner.</li>
-          <li>Shipped Unity applications across gaming, enterprise, industrial AR and healthcare simulation, adapting architecture to each domain's device and deployment constraints.</li>
-          <li>Ran technical discovery calls and owned client-facing scoping across concurrent engagements, translating requirements into phased delivery plans, technical proposals and effort estimates.</li>
+          <li>Architected and delivered 5+ Unity3D projects across mobile/iOS/Android, WebGL, VR, and AR, taking each from prototype to live release as sole or lead technical owner.</li>
+          <li>Shipped Unity applications across gaming, enterprise, industrial AR, and healthcare simulation, adapting architecture to each domain's device and deployment constraints.</li>
+          <li>Ran technical discovery calls and owned client-facing scoping across concurrent engagements, translating requirements into phased delivery plans, technical proposals, and effort estimates.</li>
         </ul>
       </div>
     </div>
@@ -641,6 +683,28 @@
 
     <div class="proj-grid">
 
+      <!-- 1. Medical MRI Training Simulator -->
+      <div class="card">
+        <div class="card-visual" style="padding: 0;">
+          <video autoplay loop muted playsinline src="./MRI/mri-training-simulator.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <h3>Medical MRI Training Simulator</h3>
+            <span class="card-badge">VR Simulation</span>
+          </div>
+          <p class="card-tagline">Immersive VR healthcare training · Oculus / Meta Quest</p>
+          <ul>
+            <li>Simulated an end-to-end clinical MRI scan workflow with interactive patient communication and authentic medical tool handling for hospital staff training.</li>
+            <li>Architected physics interaction mechanics and optimized rendering pipelines to maintain stable 90+ FPS in-headset across complex clinical scenarios.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Oculus SDK</span><span class="tag">Meta Quest</span><span class="tag">XR Interaction Toolkit</span><span class="tag">VR Healthcare</span><span class="tag">Optimization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Airbound -->
       <div class="card">
         <div class="card-visual" style="padding: 0; background: #000;">
           <iframe 
@@ -650,120 +714,71 @@
           </iframe>
         </div>
         <div class="card-body">
-          <h3>Airbound</h3>
-          <p class="card-tagline">2D arena sports game · Mobile & Web · Personal project</p>
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <h3>Airbound</h3>
+            <span class="card-badge">Shipped Game</span>
+          </div>
+          <p class="card-tagline">2D arena sports game · Mobile &amp; Web · Personal project</p>
           <ul>
-            <li>Solo-architected a complete 1v1 arena game — gameplay systems, physics, AI, input, UI and match flow.</li>
+            <li>Solo-architected a complete 1v1 arena game from prototype to public store release — gameplay systems, physics, AI bots, input, and match flow.</li>
             <li>Built modular abilities (Dash, Kick, Zip Wire, Shield, Shield Wall) with cooldowns and tactical arena control.</li>
-            <li>Added a loadout system and cross-platform mobile touch controls; published live on Google Play.</li>
+            <li>Published live on Google Play Store and itch.io with cross-platform touch controls and socket networking.</li>
           </ul>
           <div class="card-tags">
-            <span class="tag">Unity URP</span><span class="tag">C#</span><span class="tag">Socket Networking</span>
+            <span class="tag">Unity URP</span><span class="tag">C#</span><span class="tag">Socket Networking</span><span class="tag">Mobile Touch</span><span class="tag">Game Design</span>
           </div>
           <div style="display: flex; gap: 12px; margin-top: 16px;">
-            <a class="card-link" style="margin-top: 0;" href="https://play.google.com/store/apps/details?id=com.moogli.airbound" target="_blank" rel="noopener">Google Play →</a>
-            <a class="card-link" style="margin-top: 0;" href="https://mooglimk.itch.io/airbound" target="_blank" rel="noopener">itch.io →</a>
+            <a class="card-link" href="https://play.google.com/store/apps/details?id=com.moogli.airbound" target="_blank" rel="noopener">Google Play →</a>
+            <a class="card-link" href="https://mooglimk.itch.io/airbound" target="_blank" rel="noopener">itch.io →</a>
           </div>
         </div>
       </div>
 
+      <!-- 3. Bathtub Horror -->
       <div class="card">
         <div class="card-visual" style="padding: 0;">
-          <video autoplay loop muted playsinline src="./forbidden/ezgif-7e9d4d1cddc9ba15.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
-        </div>
-        <div class="card-body">
-          <h3>Forbidden Game</h3>
-          <p class="card-tagline">Dark fantasy strategy & survival · Mobile</p>
-          <ul>
-            <li>Developed core gameplay systems and strategy mechanics for a dark fantasy survival experience set in mythical Tasmania.</li>
-            <li>Optimized mobile performance and rendering for a smooth release on the Google Play Store.</li>
-          </ul>
-          <div class="card-tags">
-            <span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">Mobile Optimization</span>
-          </div>
-          <div style="display: flex; gap: 12px; margin-top: 16px;">
-            <a class="card-link" style="margin-top: 0;" href="https://play.google.com/store/apps/details?id=com.forbidden.game&hl=en_IN" target="_blank" rel="noopener">Google Play →</a>
-            <a class="card-link" style="margin-top: 0;" href="https://forbidden-game.com.au/" target="_blank" rel="noopener">Website →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-visual" style="padding: 0;">
-          <video autoplay loop muted playsinline src="./barclayas/ezgif-570dcc2981e9cdce.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
-        </div>
-        <div class="card-body">
-          <h3>Strawberry Smash (Barclays)</h3>
-          <p class="card-tagline">Arcade-style web game · WebGL</p>
-          <ul>
-            <li>Developed an engaging, time-limited arcade game featuring bonus items, avoiding distractions, and progressive difficulty.</li>
-            <li>Optimized as a highly performant WebGL build specifically for Barclays, ensuring a dynamic experience across multiple devices.</li>
-            <li>Integrated reward-based progression and high-score mechanics to drive player engagement and prize-draw qualifications.</li>
-          </ul>
-          <div class="card-tags">
-            <span class="tag">Unity WebGL</span><span class="tag">C#</span><span class="tag">Game Design</span><span class="tag">Optimization</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-visual">
-          <span class="ph-label">Project capture — add screenshot/gif</span>
-        </div>
-        <div class="card-body">
-          <h3>Virgin Atlantic Security Scanner</h3>
-          <p class="card-tagline">On-site MR trolley/baggage screening tool · Magic Leap 2</p>
-          <ul>
-            <li>Built the Unity-side pipeline streaming live MR camera feed to a remote object-detection service, flagging prohibited items in service trolleys in real time.</li>
-            <li>Implemented QR-based trolley identification to map scan results to physical compartment layout, with in-headset visualization of outcomes.</li>
-          </ul>
-          <div class="card-tags">
-            <span class="tag">Magic Leap 2 SDK</span><span class="tag">Object Detection API</span><span class="tag">QR / Marker Tracking</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-visual" style="padding: 0;">
-          <video autoplay loop muted playsinline src="./MRI/mri-training-simulator.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
-        </div>
-        <div class="card-body">
-          <h3>Medical MRI Training Simulator</h3>
-          <p class="card-tagline">Immersive VR healthcare training · Oculus</p>
-          <ul>
-            <li>Simulated an end-to-end MRI scan workflow with interactive patient communication and tool handling for clinical staff training.</li>
-            <li>Optimized interaction logic and rendering to hold smooth VR performance across training scenarios.</li>
-          </ul>
-          <div class="card-tags">
-            <span class="tag">Oculus SDK</span><span class="tag">VR Interaction Toolkit</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-visual">
-          <div class="big-init">NDA</div>
-          <span class="ph-label" style="display:inline-flex; align-items:center; gap:8px; border-color:rgba(255,90,31,0.35); color:var(--paper); font-weight:600; text-transform:uppercase; font-size:11.5px; letter-spacing:0.06em;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ember)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            Confidential · Protected Under NDA
-          </span>
+          <video autoplay loop muted playsinline src="./bathtub/bathtub-horror.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
         </div>
         <div class="card-body">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
-            <h3>SuperGas AR Plant Layout Planner</h3>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--ember); border:1px solid rgba(255,90,31,0.45); background:rgba(255,90,31,0.08); padding:3px 8px; border-radius:2px; white-space:nowrap;">Confidential</span>
+            <h3>Bathtub Horror: Voxel Buoyancy &amp; Water Shader</h3>
+            <span class="card-badge">Physics &amp; Shaders</span>
           </div>
-          <p class="card-tagline">On-site AR tool for industrial layout planning · Enterprise Client</p>
+          <p class="card-tagline">Procedural voxel buoyancy physics &amp; dynamic refraction water shader · Unity</p>
           <ul>
-            <li>Built AR surface scanning with true-scale boundary marking to flag any of 20+ placeable 3D models exceeding the marked footprint.</li>
-            <li>Added rotation, screenshot capture and form-based reporting for automated field-survey layout reports.</li>
+            <li>Architected a custom voxel-based mesh buoyancy physics engine, discretizing arbitrary 3D geometry into volumetric points to calculate submerged volume, Archimedes upward force, and rotational torque based on mass density.</li>
+            <li>Authored a dynamic water shader driving vertex displacement for procedural wave harmonics alongside real-time reflections and screen-space refraction distortion.</li>
+            <li>Implemented an event-driven shader parameter transition—overwriting the refraction absorption vector to deep crimson when submerged items cross threshold triggers.</li>
           </ul>
           <div class="card-tags">
-            <span class="tag">AR Foundation</span><span class="tag">Addressables</span><span class="tag">UI Toolkit</span><span class="tag" style="color:var(--ember); border-color:rgba(255,90,31,0.35);">Enterprise NDA</span>
+            <span class="tag">Unity 3D</span><span class="tag">C# Physics</span><span class="tag">Voxel Buoyancy</span><span class="tag">HLSL / Shader Graph</span><span class="tag">Vertex Displacement</span><span class="tag">Refraction</span>
           </div>
         </div>
       </div>
 
+      <!-- 4. Physiotherapy Wrist Rehabilitation -->
+      <div class="card">
+        <div class="card-visual" style="padding: 0;">
+          <video autoplay loop muted playsinline src="./ultraleap/physiotherapy-wrist-rehab.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <h3>Physiotherapy Wrist Rehabilitation</h3>
+            <span class="card-badge">Clinical XR</span>
+          </div>
+          <p class="card-tagline">Therapeutic gamification &amp; multi-axis gesture analysis · Ultraleap</p>
+          <ul>
+            <li>Built an interactive rehabilitation prototype for physiotherapists, mapping optical hand tracking to table-tennis paddle physics.</li>
+            <li>Engineered a multi-gesture detection suite validating discrete patient kinematics: fist clench/grip state, vertical (up/down) elevation, lateral (left/right) sweeps, and continuous wrist rotation angles (flexion/extension, pronation/supination).</li>
+            <li>Provided real-time biomechanical telemetry and range-of-motion (ROM) logging for clinicians to evaluate motor recovery progression.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Ultraleap SDK</span><span class="tag">Unity 3D</span><span class="tag">Gesture Recognition</span><span class="tag">Biomechanical Telemetry</span><span class="tag">Healthcare XR</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Cyclone Hand Gesture Controller -->
       <div class="card">
         <div class="card-visual" style="padding: 0;">
           <video autoplay loop muted playsinline src="./ultraleap/ultraleap-cyclone.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
@@ -771,7 +786,7 @@
         <div class="card-body">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
             <h3>Cyclone Hand Gesture Controller</h3>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--signal); border:1px solid rgba(47,230,166,0.45); background:rgba(47,230,166,0.08); padding:3px 8px; border-radius:2px; white-space:nowrap;">PoC / R&amp;D</span>
+            <span class="card-badge">Spatial Input R&amp;D</span>
           </div>
           <p class="card-tagline">Spatial hand tracking &amp; vortex physics simulation · Ultraleap</p>
           <ul>
@@ -785,27 +800,101 @@
         </div>
       </div>
 
+      <!-- 6. Virgin Atlantic Security Scanner -->
       <div class="card">
-        <div class="card-visual" style="padding: 0;">
-          <video autoplay loop muted playsinline src="./ultraleap/physiotherapy-wrist-rehab.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+        <div class="card-visual">
+          <div class="big-init">MR</div>
+          <span class="ph-label">Enterprise MR · Magic Leap 2</span>
         </div>
         <div class="card-body">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
-            <h3>Physiotherapy Wrist Rehabilitation</h3>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--signal); border:1px solid rgba(47,230,166,0.45); background:rgba(47,230,166,0.08); padding:3px 8px; border-radius:2px; white-space:nowrap;">Clinical XR</span>
+            <h3>Virgin Atlantic Security Scanner</h3>
+            <span class="card-badge">Enterprise MR</span>
           </div>
-          <p class="card-tagline">Therapeutic gamification &amp; multi-axis gesture analysis · Ultraleap</p>
+          <p class="card-tagline">On-site MR trolley/baggage screening tool · Magic Leap 2</p>
           <ul>
-            <li>Built an interactive rehabilitation prototype for physiotherapists, mapping optical hand tracking to table-tennis paddle physics.</li>
-            <li>Engineered a multi-gesture detection suite validating discrete patient kinematics: fist clench/grip state, vertical (up/down) elevation, lateral (left/right) sweeps, and continuous wrist rotation angles.</li>
-            <li>Provided real-time biomechanical telemetry and range-of-motion (ROM) logging for clinicians to evaluate motor recovery progression.</li>
+            <li>Built the Unity-side pipeline streaming live MR camera feed to a remote object-detection service, flagging prohibited items in service trolleys in real time.</li>
+            <li>Implemented QR-based trolley identification to map scan results to physical compartment layout, with in-headset spatial visualization of outcomes.</li>
           </ul>
           <div class="card-tags">
-            <span class="tag">Ultraleap SDK</span><span class="tag">Unity 3D</span><span class="tag">Gesture Recognition</span><span class="tag">Biomechanical Telemetry</span><span class="tag">Healthcare XR</span>
+            <span class="tag">Magic Leap 2 SDK</span><span class="tag">Object Detection API</span><span class="tag">QR / Marker Tracking</span><span class="tag">Enterprise XR</span>
           </div>
         </div>
       </div>
 
+      <!-- 7. Forbidden Game -->
+      <div class="card">
+        <div class="card-visual" style="padding: 0;">
+          <video autoplay loop muted playsinline src="./forbidden/ezgif-7e9d4d1cddc9ba15.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <h3>Forbidden Game</h3>
+            <span class="card-badge">Google Play</span>
+          </div>
+          <p class="card-tagline">Dark fantasy strategy &amp; survival · Mobile</p>
+          <ul>
+            <li>Developed core gameplay systems and strategy mechanics for a dark fantasy survival experience set in mythical Tasmania.</li>
+            <li>Optimized mobile rendering pipelines, texture compression, and memory footprint for a smooth public release on the Google Play Store.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">Mobile Optimization</span><span class="tag">Strategy Systems</span>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 16px;">
+            <a class="card-link" href="https://play.google.com/store/apps/details?id=com.forbidden.game&hl=en_IN" target="_blank" rel="noopener">Google Play →</a>
+            <a class="card-link" href="https://forbidden-game.com.au/" target="_blank" rel="noopener">Website →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Strawberry Smash (Barclays) -->
+      <div class="card">
+        <div class="card-visual" style="padding: 0;">
+          <video autoplay loop muted playsinline src="./barclayas/ezgif-570dcc2981e9cdce.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <h3>Strawberry Smash (Barclays)</h3>
+            <span class="card-badge">Client WebGL</span>
+          </div>
+          <p class="card-tagline">Arcade-style branded web game · WebGL</p>
+          <ul>
+            <li>Developed an engaging, time-limited arcade game featuring bonus items, distraction obstacles, and progressive difficulty curves.</li>
+            <li>Optimized as a lightweight, performant WebGL build specifically for Barclays, ensuring high frame rates across low-spec corporate and mobile browsers.</li>
+            <li>Integrated reward-based progression and high-score mechanics to drive player engagement and prize-draw qualifications.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">Unity WebGL</span><span class="tag">C#</span><span class="tag">Game Design</span><span class="tag">Memory Optimization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. SuperGas AR Plant Layout Planner -->
+      <div class="card">
+        <div class="card-visual">
+          <div class="big-init">NDA</div>
+          <span class="ph-label" style="display:inline-flex; align-items:center; gap:8px; border-color:var(--line-strong); color:var(--text-main); font-weight:600; text-transform:uppercase; font-size:11.5px; letter-spacing:0.06em;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Confidential · Protected Under NDA
+          </span>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <h3>SuperGas AR Plant Layout Planner</h3>
+            <span class="card-badge">Confidential</span>
+          </div>
+          <p class="card-tagline">On-site AR tool for industrial layout planning · Enterprise Client</p>
+          <ul>
+            <li>Built AR surface scanning with true-scale boundary marking to flag any of 20+ placeable 3D models exceeding the marked footprint.</li>
+            <li>Implemented rotation, screenshot capture, and form-based reporting for automated field-survey industrial layout reports.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="tag">AR Foundation</span><span class="tag">Addressables</span><span class="tag">UI Toolkit</span><span class="tag">Enterprise NDA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Newton's Rings & Electronics Virtual Labs -->
       <div class="card">
         <div class="card-visual" style="padding: 0; background: #000;">
           <iframe 
@@ -817,7 +906,7 @@
         <div class="card-body">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
             <h3>Newton's Rings &amp; Electronics Virtual Labs</h3>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--paper); border:1px solid var(--line); background:var(--panel-raised); padding:3px 8px; border-radius:2px; white-space:nowrap;">INVLABZ</span>
+            <span class="card-badge">INVLABZ</span>
           </div>
           <p class="card-tagline">STEM physics &amp; digital electronics experiment simulators · Unity 3D</p>
           <ul>
@@ -829,29 +918,8 @@
             <span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">Optics &amp; Circuits</span><span class="tag">Virtual Labs</span><span class="tag">EdTech</span>
           </div>
           <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <a class="card-link" style="margin-top: 0;" href="https://www.youtube.com/watch?v=ku8iQPFcrck" target="_blank" rel="noopener">Newton's Rings Demo →</a>
-            <a class="card-link" style="margin-top: 0;" href="https://www.youtube.com/watch?v=3C97DYiwSE4&list=PLlSphC--ixGCJAaAA47xgW-GIqNYv7g2J" target="_blank" rel="noopener">Electronics Playlist →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-visual" style="padding: 0;">
-          <video autoplay loop muted playsinline src="./bathtub/bathtub-horror.mp4" style="width: 100%; height: 100%; object-fit: contain; background: #000;"></video>
-        </div>
-        <div class="card-body">
-          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
-            <h3>Bathtub Horror: Voxel Buoyancy &amp; Water Shader</h3>
-            <span style="font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--ember); border:1px solid rgba(255,90,31,0.45); background:rgba(255,90,31,0.08); padding:3px 8px; border-radius:2px; white-space:nowrap;">Physics &amp; Shaders</span>
-          </div>
-          <p class="card-tagline">Procedural voxel buoyancy physics &amp; dynamic refraction water shader · Unity</p>
-          <ul>
-            <li>Architected a custom voxel-based mesh buoyancy engine, discretizing arbitrary 3D geometry into volumetric points to calculate submerged volume, buoyant forces, and natural rotational bobbing based on object density.</li>
-            <li>Authored a dynamic water shader driving vertex displacement for procedural wave harmonics alongside real-time reflections and screen-space refraction distortion.</li>
-            <li>Implemented an event-driven shader parameter transition—overwriting the refraction absorption vector to deep crimson when submerged items cross threshold triggers.</li>
-          </ul>
-          <div class="card-tags">
-            <span class="tag">Unity 3D</span><span class="tag">C# Physics</span><span class="tag">Voxel Buoyancy</span><span class="tag">HLSL / Shader Graph</span><span class="tag">Vertex Displacement</span><span class="tag">Refraction</span>
+            <a class="card-link" href="https://www.youtube.com/watch?v=ku8iQPFcrck" target="_blank" rel="noopener">Newton's Rings Demo →</a>
+            <a class="card-link" href="https://www.youtube.com/watch?v=3C97DYiwSE4&list=PLlSphC--ixGCJAaAA47xgW-GIqNYv7g2J" target="_blank" rel="noopener">Electronics Playlist →</a>
           </div>
         </div>
       </div>
@@ -868,12 +936,12 @@
         <h3>Expert</h3>
         <div class="skill-tags">
           <span class="tag">Unity (2D/3D)</span>
-          <span class="tag">C#</span>
+          <span class="tag">C# Architecture</span>
           <span class="tag">VR/AR/MR Development</span>
           <span class="tag">XR Interaction Toolkit</span>
           <span class="tag">Game Design &amp; Systems Balancing</span>
           <span class="tag">Mobile Game Development</span>
-          <span class="tag">WebGL</span>
+          <span class="tag">WebGL Optimization</span>
           <span class="tag">Git / Plastic SCM</span>
         </div>
       </div>
@@ -883,7 +951,9 @@
           <span class="tag">AR Foundation</span>
           <span class="tag">Multiplayer Networking (Socket, Photon)</span>
           <span class="tag">Magic Leap 2 / Meta Quest SDKs</span>
-          <span class="tag">Game Optimization</span>
+          <span class="tag">Ultraleap Hand Tracking</span>
+          <span class="tag">HLSL / Shader Graph</span>
+          <span class="tag">Voxel Physics Simulation</span>
           <span class="tag">Technical Scoping &amp; Client Delivery</span>
         </div>
       </div>
@@ -1006,7 +1076,7 @@
 
     const hint = document.createElement('span');
     hint.className = 'expand-hint';
-    hint.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand';
+    hint.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> Expand';
     visual.appendChild(hint);
 
     const trigger = () => openModal(media, title);
